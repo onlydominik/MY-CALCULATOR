@@ -6,7 +6,7 @@ const deleteBtn = document.querySelector(".btn--delete");
 const shiftBtn = document.querySelector(".btn--shift");
 let screenCurrent = document.querySelector(".screen--current");
 let screenPrevious = document.querySelector(".screen--previous");
-
+let screenHistory = document.querySelector(".screen--history");
 
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -25,7 +25,7 @@ operationBtns.forEach((btn) => {
 sumBtn.addEventListener("click", () => {
   calculator.calculate();
   calculator.display();
-  calculator.clear();
+
 });
 
 clearBtn.addEventListener("click", () => {
@@ -34,36 +34,32 @@ clearBtn.addEventListener("click", () => {
 });
 
 deleteBtn.addEventListener("click", () => {
- calculator.delete();
- calculator.display();
+  calculator.delete();
+  calculator.display();
 });
 
 shiftBtn.addEventListener("click", () => {
   calculator.shiftCurrentValue();
   calculator.display();
- });
-
-
-
-
+});
 
 class Calculator {
-  constructor(screenPrevious, screenCurrent) {
+  constructor(screenPrevious, screenCurrent, screenHistory) {
     this.screenPrevious = screenPrevious;
     this.screenCurrent = screenCurrent;
+    this.screenHistory = screenHistory;
     this.clear();
   }
 
+  
+
   makeNumber(selectedNumber) {
     if (selectedNumber === "." && this.currentNumber.includes(".")) return;
-
+    //CLEAR AFTER SUM
+    if(this.operator === null && this.screenPrevious.value === "") this.clear();
+    //
     this.currentNumber =
       this.currentNumber.toString() + selectedNumber.toString();
-
-      //divide
-
-      
-
   }
 
   clear() {
@@ -77,12 +73,15 @@ class Calculator {
     //RESET FOR NULL OPERATOR
     screenPrevious.value = "";
     //
+   // if(this.historyEquation) this.screenHistory.value = this.historyEquation
     if (this.operator !== null) {
-      screenPrevious.value = this.previousNumber + this.operator;
-    }    
+      screenPrevious.value = this.previousNumber + " " + this.operator;
+    }
 
     //SEPARATE WITH COMMA
-    this.screenCurrent.value = this.currentNumber.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    this.screenCurrent.value = this.currentNumber
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
   makeOperation(operator) {
@@ -120,15 +119,14 @@ class Calculator {
       default:
         break;
     }
-
+    this.historyEquation = `${this.currentNumber} ${this.operator} ${this.previousNumber} = ${result}`;
     this.currentNumber = result;
     this.previousNumber = "";
     this.operator = null;
-    
   }
 
   delete() {
-    this.currentNumber = this.currentNumber.slice(0, -1)
+    this.currentNumber = this.currentNumber.slice(0, -1);
   }
 
   shiftCurrentValue() {
@@ -136,4 +134,4 @@ class Calculator {
   }
 }
 
-const calculator = new Calculator(screenPrevious, screenCurrent);
+const calculator = new Calculator(screenPrevious, screenCurrent, screenHistory);
