@@ -25,7 +25,6 @@ operationBtns.forEach((btn) => {
 sumBtn.addEventListener("click", () => {
   calculator.calculate();
   calculator.display();
-
 });
 
 clearBtn.addEventListener("click", () => {
@@ -51,12 +50,11 @@ class Calculator {
     this.clear();
   }
 
-  
-
   makeNumber(selectedNumber) {
     if (selectedNumber === "." && this.currentNumber.includes(".")) return;
     //CLEAR AFTER SUM
-    if(this.operator === null && this.screenPrevious.value === "") this.clear();
+    if (this.operator === null && this.screenPrevious.value === "")
+      this.clear();
     //
     this.currentNumber =
       this.currentNumber.toString() + selectedNumber.toString();
@@ -66,6 +64,8 @@ class Calculator {
     this.currentNumber = "";
     this.previousNumber = "";
     this.operator = "";
+    //this.historyEquation = "";
+    //this.screenHistory.value = ""
   }
 
   display() {
@@ -73,7 +73,7 @@ class Calculator {
     //RESET FOR NULL OPERATOR
     screenPrevious.value = "";
     //
-   // if(this.historyEquation) this.screenHistory.value = this.historyEquation
+    //if(this.historyEquation) this.screenHistory.value = this.historyEquation
     if (this.operator !== null) {
       screenPrevious.value = this.previousNumber + " " + this.operator;
     }
@@ -119,14 +119,18 @@ class Calculator {
       default:
         break;
     }
-    this.historyEquation = `${this.currentNumber} ${this.operator} ${this.previousNumber} = ${result}`;
+    //this.historyEquation = `${this.currentNumber} ${this.operator} ${this.previousNumber} = ${result}`;
+
     this.currentNumber = result;
     this.previousNumber = "";
     this.operator = null;
   }
 
-  delete() {
-    this.currentNumber = this.currentNumber.slice(0, -1);
+  delete() { 
+
+    if(this.currentNumber) this.currentNumber = this.currentNumber.toString().slice(0, -1);
+    
+   
   }
 
   shiftCurrentValue() {
@@ -135,3 +139,38 @@ class Calculator {
 }
 
 const calculator = new Calculator(screenPrevious, screenCurrent, screenHistory);
+
+numberBtns.forEach((btn) => {
+  btn.addEventListener("keydown", (e) => {
+    calculator.makeNumber(e.target.value);
+    calculator.display();
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  if (!isNaN(parseInt(e.key))) {
+    calculator.makeNumber(e.key);
+    calculator.display();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key == "+" || e.key == "-" || e.key == "/") {
+    calculator.makeOperation(e.key);
+    calculator.display();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key == "=" || e.key == "Enter") {
+    calculator.calculate();
+    calculator.display();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Backspace") {
+    calculator.delete();
+    calculator.display();
+  }
+});
