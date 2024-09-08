@@ -1,11 +1,4 @@
-body {
-  background-color: black;
-}
-
-.screen {
-  color: white;
-}
-
-input {
-  display: block;
-}
+@use "./scss/base/" as *;
+@use "./scss/abstract/" as *;
+@use "./scss/components/" as *;
+@use "./scss/layouts/" as *;

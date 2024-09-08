@@ -1,0 +1,19 @@
+// SPACING //
+
+$sizes: (
+  radius: 0.4rem,
+  min: 0.8rem,
+  100: 0.25rem,
+  200: 0.5rem,
+  300: 0.75rem,
+  400: 0.8rem,
+  500: 1rem,
+  600: 7rem,
+  700: 13rem,
+);
+
+:root {
+  @each $name, $value in $sizes {
+    --size-#{$name}: #{$value};
+  }
+}
