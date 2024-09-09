@@ -140,12 +140,7 @@ class Calculator {
 
 const calculator = new Calculator(screenPrevious, screenCurrent, screenHistory);
 
-numberBtns.forEach((btn) => {
-  btn.addEventListener("keydown", (e) => {
-    calculator.makeNumber(e.target.value);
-    calculator.display();
-  });
-});
+
 
 document.addEventListener("keydown", (e) => {
   if (!isNaN(parseInt(e.key))) {

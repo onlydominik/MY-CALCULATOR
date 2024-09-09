@@ -3,6 +3,7 @@ body {
   height: 100dvh;
   background-color: var(--clr-primary-400);
   display: flex;
-  justify-content: center;
-  align-items: end;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }

@@ -11,4 +11,8 @@
   border: none;
   background-color: var(--clr-primary-400);
   color: var(--clr-primary-100);
+  cursor: default;
+  &:focus-visible {
+    outline: none;
+  }
 }
