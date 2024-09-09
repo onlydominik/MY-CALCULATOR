@@ -1,6 +1,6 @@
 #calculator {
   font-size: 1rem;
-  background-color: #252422;
+  background-color: var(--clr-primary-400);
   padding: var(--size-100);
 }
 
@@ -9,6 +9,6 @@
   font-size: var(--fs-700);
   text-align: right;
   border: none;
-  background-color: #252422;
+  background-color: var(--clr-primary-400);
   color: var(--clr-primary-100);
 }

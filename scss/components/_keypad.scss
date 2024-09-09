@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.15rem;
+  color: var(--clr-primary-100);
 }
 
 .keypad-btns--func {
@@ -21,4 +22,8 @@
   & .btn--clear {
     grid-column: 1 / 3;
   }
+}
+
+.keypad-btns--op {
+  color: #4ea5d9;
 }
