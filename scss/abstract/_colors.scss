@@ -1,22 +1,19 @@
-$colors: (
-  "primary": (
-    100: hsl(47, 43%, 89%),
-    200: hsl(36, 5%, 19%),
-    300: hsl(34, 6%, 24%),
-    400: hsl(40, 4%, 14%),
-    500: #e8a2a2,
-  ),
-  "accent": (
-    100: hsl(14, 87%, 49%),
-    "card-background": hsl(235, 46%, 20%),
-    "blue": rgb(88, 71, 235),
-  ),
-);
-
 :root {
-  @each $category, $subcategory in $colors {
-    @each $name, $value in $subcategory {
-      --clr-#{$category}-#{$name}: #{$value};
-    }
-  }
+  --clr-primary-text-faded: hsla(0, 0%, 0%, 0.637);
+  --clr-primary-text: hsl(0, 0%, 0%);
+  --clr-primary-background-light-faded: hsla(0, 0%, 100%, 0.643);
+  --clr-primary-background-light: hsl(0, 0%, 100%);
+  --clr-primary-background: hsl(0, 0%, 70%);
+  --clr-primary-background-hover: hsl(0, 0%, 91%);
+  --clr-accent-text: hsl(14, 87%, 49%);
+}
+
+.dark-theme {
+  --clr-primary-text-faded: hsla(47, 43%, 89%, 0.7);
+  --clr-primary-text: hsl(47, 43%, 89%);
+  --clr-primary-background-light-faded: hsla(34, 6%, 24%, 0.452);
+  --clr-primary-background-light: hsl(34, 6%, 24%);
+  --clr-primary-background: hsl(40, 4%, 14%);
+  --clr-primary-background-hover: hsl(36, 5%, 22%);
+  --clr-accent-text: hsl(14, 87%, 49%);
 }

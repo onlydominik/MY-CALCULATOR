@@ -1,9 +1,13 @@
 body {
-  font-family: "Rubik", sans-serif;
+  font-family: var(--ff-main), sans-serif;
   height: 100dvh;
-  background-color: var(--clr-primary-400);
+  background-color: var(--clr-primary-background);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  & button::selection {
+    background-color: red;
+    color: red;
+  }
 }

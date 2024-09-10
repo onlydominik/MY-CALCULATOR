@@ -1,5 +1,17 @@
 .btn {
-  background-color: var(--clr-primary-300);
+  cursor: pointer;
+  background-color: var(--clr-primary-background-light);
   border: none;
   color: inherit;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  transition: all 120ms ease-out;
+  &:focus-visible {
+    opacity: 100% !important;
+    outline: dotted 3px red;
+  }
+  &:hover {
+    background-color: var(--clr-primary-background-hover);
+    transition: none;
+  }
 }

@@ -1,3 +1,22 @@
+.keypad-btns--func,
+.keypad-btns--op,
+.keypad-btns--num {
+  cursor: pointer;
+}
+
+.keypad-btns--func {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.15rem;
+  color: var(--clr-primary-text);
+  & .btn--clear {
+    grid-column: 1 / 3;
+  }
+  & .btn {
+    background-color: var(--clr-primary-background-light-faded);
+  }
+}
+
 .keypad-btns--op {
   width: 100%;
   display: flex;
@@ -12,26 +31,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.15rem;
-  color: var(--clr-primary-100);
-  & .btn {
-    
-  }
+  color: var(--clr-primary-text);
 }
 
-.keypad-btns--func {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.15rem;
-  & .btn--clear {
-    grid-column: 1 / 3;
-  }
-}
-
-.keypad-btns--op, .btn--sum {
-  color: var(--clr-accent-100);
-}
-
-.keypad-btns--func {
-  opacity: 50%;
-  color: var(--clr-primary-100);
+.keypad-btns--op,
+.btn--sum {
+  color: var(--clr-accent-text);
 }

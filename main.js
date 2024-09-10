@@ -109,11 +109,14 @@ class Calculator {
         result = previousNumberParsed - currentNumberParsed;
         break;
 
-      case "/":
+      case "÷":
         result = previousNumberParsed / currentNumberParsed;
+        if(previousNumberParsed > 0 && currentNumberParsed === 0) result = "Infinity"
+        if(previousNumberParsed < 0 && currentNumberParsed === 0) result = "-Infinity"
+        if(isNaN(result)) result = "Error"
         break;
 
-      case "*":
+      case "x":
         result = previousNumberParsed * currentNumberParsed;
 
       default:
@@ -126,11 +129,9 @@ class Calculator {
     this.operator = null;
   }
 
-  delete() { 
-
-    if(this.currentNumber) this.currentNumber = this.currentNumber.toString().slice(0, -1);
-    
-   
+  delete() {
+    if (this.currentNumber)
+      this.currentNumber = this.currentNumber.toString().slice(0, -1);
   }
 
   shiftCurrentValue() {
@@ -139,8 +140,6 @@ class Calculator {
 }
 
 const calculator = new Calculator(screenPrevious, screenCurrent, screenHistory);
-
-
 
 document.addEventListener("keydown", (e) => {
   if (!isNaN(parseInt(e.key))) {
@@ -169,3 +168,21 @@ document.addEventListener("keydown", (e) => {
     calculator.display();
   }
 });
+
+//THEME
+let darkTheme = localStorage.getItem("darkTheme");
+const themeBtn = document.querySelector("#theme-switch");
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  localStorage.setItem("darkTheme", "enabled");
+}
+if (darkTheme === "enabled") document.documentElement.classList.add("dark-theme");
+themeBtn.addEventListener("click", () => {
+  darkTheme = localStorage.getItem("darkTheme");
+  document.documentElement.classList.toggle("dark-theme");
+  if (darkTheme === "enabled") {
+    localStorage.removeItem("darkTheme");
+    return;
+  }
+  localStorage.setItem("darkTheme", "enabled");
+});
+
